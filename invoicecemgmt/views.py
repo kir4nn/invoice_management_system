@@ -309,7 +309,7 @@ def list_invoice(request):
 
 @login_required
 def update_invoice(request, pk):
-    queryset = Invoice.objects.get(id=pk)
+    queryset = Invoice.objects.get(pk=pk)
     form = InvoiceUpdateForm(instance=queryset)
     if request.method == 'POST':
         form = InvoiceUpdateForm(request.POST, instance=queryset)
@@ -325,7 +325,7 @@ def update_invoice(request, pk):
 
 @login_required
 def delete_invoice(request, pk):
-    queryset = Invoice.objects.get(id=pk)
+    queryset = Invoice.objects.get(pk=pk)
     if request.method == 'POST':
         queryset.delete()
         return redirect('/invoice/list_invoice')
