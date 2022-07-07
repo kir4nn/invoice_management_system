@@ -2,10 +2,23 @@ from django import forms
 from .models import Invoice
 from inventory.models import Inventory
 from django.forms import TextInput
+
 class InvoiceForm(forms.ModelForm):
+	# line_one = forms.ModelChoiceField(queryset=Inventory.objects.values_list('product_number','title'), required=False, label="Line 1")
+	# line_two = forms.ModelChoiceField(queryset=Inventory.objects.values_list('product_number','title'), required=False, label="Line 1")
+	# line_three = forms.ModelChoiceField(queryset=Inventory.objects.values_list('product_number','title'), required=False, label="Line 1")
+	# line_four = forms.ModelChoiceField(queryset=Inventory.objects.values_list('product_number','title'), required=False, label="Line 1")
+	# line_five = forms.ModelChoiceField(queryset=Inventory.objects.values_list('product_number','title'), required=False, label="Line 1")
+	# line_six = forms.ModelChoiceField(queryset=Inventory.objects.values_list('product_number','title'), required=False, label="Line 1")
+	# line_seven = forms.ModelChoiceField(queryset=Inventory.objects.values_list('product_number','title'), required=False, label="Line 1")
+	# line_eight = forms.ModelChoiceField(queryset=Inventory.objects.values_list('product_number','title'), required=False, label="Line 1")
+	# line_nine = forms.ModelChoiceField(queryset=Inventory.objects.values_list('product_number','title'), required=False, label="Line 1")
+	# line_ten = forms.ModelChoiceField(queryset=Inventory.objects.values_list('product_number','title'), required=False, label="Line 1")
 
-	line_one = forms.ModelChoiceField(queryset=Inventory.objects.values_list('title',flat=True), label="Line 1")
-
+	# iquery = LiveDataFeed.objects.values_list('unit_id', flat=True).distinct()
+    # iquery_choices = [('', 'None')] + [(id, id) for id in iquery]
+    # unit_id = forms.ChoiceField(iquery_choices,
+    #                             required=False, widget=forms.Select())
 	line_one_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
 	line_two_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
 	line_three_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
