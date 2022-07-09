@@ -128,7 +128,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
+ACCOUNT_ACTIVATION_DAYS = 60  # One-week activation window
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/list_invoice'
+LOGIN_REDIRECT_URL = '/invoice/list_invoice'

@@ -12,6 +12,9 @@ from reportlab.platypus import Image
 
 from django.contrib.auth.decorators import login_required
 
+from django.http import JsonResponse
+from django.forms.models import model_to_dict
+
 def home(request):
     title = 'Welcome: This is the Home Page'
     context = {
@@ -22,9 +25,12 @@ def home(request):
 @login_required
 def add_invoice(request):
     form = InvoiceForm(request.POST or None)
+    # data = Inventory.objects.all()
+    # dict_obj = model_to_dict(data)
+    # serialized = json.dumps(dict_obj)
     total_invoices = Invoice.objects.count()
     queryset = Invoice.objects.order_by('-invoice_date')[:6]
-    # inventory_queryset = Inventory.objects.all
+
     if form.is_valid():
         form.save()
         messages.success(request, 'Successfully Saved')
@@ -34,7 +40,7 @@ def add_invoice(request):
         "title": "New Invoice",
         "total_invoices": total_invoices,
 		"queryset": queryset,
-        # "inventory_queryset":inventory_queryset,
+        "serialized":serialized,
     }
     return render(request, "entry.html", context)
 

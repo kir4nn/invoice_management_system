@@ -9,6 +9,7 @@ from reportlab.lib.pagesizes import landscape
 from reportlab.platypus import Image
 from django.contrib.auth.decorators import login_required
 
+@login_required
 def home(request):
     title = 'Inventory'
     context = {

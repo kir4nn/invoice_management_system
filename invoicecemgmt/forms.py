@@ -2,6 +2,7 @@ from django import forms
 from .models import Invoice
 from inventory.models import Inventory
 from django.forms import TextInput
+from crispy_forms.helper import FormHelper
 
 class InvoiceForm(forms.ModelForm):
 	# line_one = forms.ModelChoiceField(queryset=Inventory.objects.values_list('product_number','title'), required=False, label="Line 1")
@@ -19,16 +20,16 @@ class InvoiceForm(forms.ModelForm):
     # iquery_choices = [('', 'None')] + [(id, id) for id in iquery]
     # unit_id = forms.ChoiceField(iquery_choices,
     #                             required=False, widget=forms.Select())
-	line_one_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
-	line_two_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
-	line_three_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
-	line_four_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
-	line_five_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
-	line_six_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
-	line_seven_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
-	line_eight_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
-	line_nine_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
-	line_ten_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
+	# line_one_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
+	# line_two_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
+	# line_three_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
+	# line_four_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
+	# line_five_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
+	# line_six_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
+	# line_seven_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
+	# line_eight_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
+	# line_nine_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
+	# line_ten_unit_price = forms.CharField(widget=forms.Select, label="Unit Price(₹)")
 
 	class Meta:
 		model = Invoice
@@ -84,24 +85,33 @@ class InvoiceForm(forms.ModelForm):
 			raise forms.ValidationError('This field is required')
 		return line_one_quantity
 
-	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
-		self.fields['line_one_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
-		self.fields['line_two_unit_price'].widget.choices= [(i.amount, i.amount) for i in Inventory.objects.all()]
-		self.fields['line_three_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
-		self.fields['line_four_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
-		self.fields['line_five_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
-		self.fields['line_six_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
-		self.fields['line_seven_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
-		self.fields['line_eight_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
-		self.fields['line_nine_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
-		self.fields['line_ten_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
+	# def __init__(self, *args, **kwargs):
+	# 	super().__init__(*args, **kwargs)
+	# 	self.fields['line_one_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
+	# 	self.fields['line_two_unit_price'].widget.choices= [(i.amount, i.amount) for i in Inventory.objects.all()]
+	# 	self.fields['line_three_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
+	# 	self.fields['line_four_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
+	# 	self.fields['line_five_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
+	# 	self.fields['line_six_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
+	# 	self.fields['line_seven_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
+	# 	self.fields['line_eight_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
+	# 	self.fields['line_nine_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
+	# 	self.fields['line_ten_unit_price'].widget.choices = [(i.amount, i.amount) for i in Inventory.objects.all()]
 
-class InvoiceSearchForm(forms.ModelForm):
+class InvoiceSearchForm(forms.Form):
 	generate_invoice = forms.BooleanField(required=False)
-	class Meta:
-		model = Invoice
-		fields = ['invoice_number', 'name','generate_invoice']
+	invoice_number = forms.CharField(max_length=100, required=False)
+	name = forms.CharField(max_length=100, required=False)
+	# class Meta:
+	# 	model = Invoice
+	# 	fields = ['invoice_number', 'name','generate_invoice']
+
+	# def __init__(self, *args, **kwargs):
+	# 	super(InvoiceSearchForm, self).__init__(*args, **kwargs)
+	# 	self.helper = FormHelper(self)
+	# 	self.helper.form_show_errors = False
+	# 	self.helper.error_text_inline = False
+	# 	self.form_error_title=False
 
 class InvoiceUpdateForm(forms.ModelForm):
 	class Meta:
