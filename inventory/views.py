@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
-    title = 'Inventory'
+    title = 'Inventory Management'
     context = {
     "title": title,
     }

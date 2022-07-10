@@ -51,7 +51,7 @@ body{
 }
 /*Make alternating colors for the table rows*/
 .table tr:nth-child(odd){
-	background: #603F83FF
+	background: #bf8cf5
 }
 
 .table tr:nth-child(even){

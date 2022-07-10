@@ -20,7 +20,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 
 
 def home(request):
-    title = 'Welcome: This is the Home Page'
+    title = 'Invoice Management System'
     context = {
     "title": title,
     }

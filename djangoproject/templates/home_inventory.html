@@ -5,8 +5,13 @@
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link href="{% static 'css/stylesheet2.css' %}" rel="stylesheet">
 </head>
-<body>
-<center><br><br><br>
-<a href="add_product"><button class="btn btn-primary btn-lg">Add Products</button></a>
+<center>
+	<u><h1>{{title}}</h1></u><br><br>
+
+		<hr><a href="/inventory/add_product"><button class="btn btn-primary btn-lg">Add Products</button></a>
+
+			<hr><a href="/inventory/list_product"><button class="btn btn-primary btn-lg">List Products</button></a>
+
+		<hr><a href="/invoice"><button class="btn btn-info btn-lg">Invoice</button></a>
+
 </center>
-</body>

@@ -6,16 +6,13 @@
 	<link href="{% static 'css/stylesheet.css' %}" rel="stylesheet">
 </head>
 
-<h1>{{title}}</h1>
+<center>
+	<u><h1>{{title}}</h1></u><br><br>
 
-<button class="btn btn-danger">Click Me</button>
+		<hr><a href="/invoice/add_invoice"><button class="btn btn-primary btn-lg">Add Invoices</button></a>
 
-<div class="row">
-	<div class="col-sm-6 myClass">
-		Jinendra
-	</div>
+			<hr><a href="/invoice/list_invoice"><button class="btn btn-primary btn-lg">List Invoices</button></a>
 
-	<div class="col-sm-6 myClass">
-		Abhay
-	</div>
-</div>
+		<hr><a href="/inventory"><button class="btn btn-info btn-lg">Inventory</button></a>
+
+</center>
