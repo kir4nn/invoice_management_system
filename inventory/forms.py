@@ -30,7 +30,9 @@ class InventoryForm(forms.ModelForm):
 			raise forms.ValidationError('This field is required')
 		return amount
 
-class InventorySearchForm(forms.ModelForm):
+class InventorySearchForm(forms.Form):
+	product_number = forms.CharField(max_length=100, required=False)
+	title = forms.CharField(max_length=100, required=False)
 	class Meta:
 		model = Inventory
 		fields = ['product_number', 'title']

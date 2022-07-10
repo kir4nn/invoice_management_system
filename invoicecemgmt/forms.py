@@ -59,6 +59,15 @@ class InvoiceForm(forms.ModelForm):
 			'line_nine_quantity': TextInput(),
 			'line_ten_quantity': TextInput(),
 			'line_one_unit_price': TextInput(),
+			'line_two_unit_price': TextInput(),
+			'line_three_unit_price': TextInput(),
+			'line_four_unit_price': TextInput(),
+			'line_five_unit_price': TextInput(),
+			'line_six_unit_price': TextInput(),
+			'line_seven_unit_price': TextInput(),
+			'line_eight_unit_price': TextInput(),
+			'line_nine_unit_price': TextInput(),
+			'line_ten_unit_price': TextInput(),
         }
 
 	def clean_invoice_number(self):
@@ -103,16 +112,6 @@ class InvoiceSearchForm(forms.Form):
 	generate_invoice = forms.BooleanField(required=False)
 	invoice_number = forms.CharField(max_length=100, required=False)
 	name = forms.CharField(max_length=100, required=False)
-	# class Meta:
-	# 	model = Invoice
-	# 	fields = ['invoice_number', 'name','generate_invoice']
-
-	# def __init__(self, *args, **kwargs):
-	# 	super(InvoiceSearchForm, self).__init__(*args, **kwargs)
-	# 	self.helper = FormHelper(self)
-	# 	self.helper.form_show_errors = False
-	# 	self.helper.error_text_inline = False
-	# 	self.form_error_title=False
 
 class InvoiceUpdateForm(forms.ModelForm):
 	class Meta:

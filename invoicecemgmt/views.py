@@ -29,16 +29,9 @@ def home(request):
 @login_required
 def add_invoice(request):
     form = InvoiceForm(request.POST or None)
-    #data = serializers.serialize("json",Inventory.objects.all(),fields=('product_number', 'amount'))
     total_invoices = Invoice.objects.count()
     queryset = Invoice.objects.order_by('-invoice_date')[:6]
-
-    # data1 = Inventory.objects.values_list('product_number','amount')
-    # data = json.dumps(list(data1), cls=DjangoJSONEncoder)
-
-    # data = serializers.serialize("json", Inventory.objects.in_bulk())
-
-    model_data=Inventory.objects.values_list('product_number','amount')# This returns a queryset object
+    model_data=Inventory.objects.values_list('product_number','amount')
     data=[model for model in model_data.values()]
 
     if form.is_valid():
@@ -173,15 +166,10 @@ def list_invoice(request):
     		c = canvas.Canvas(pdf_file_name)
 
     		# image of seal
-    		logo = 'logo.png'
+    		logo = 'logo.jpg'
     		c.drawImage(logo, 50, 700, width=500, height=120)
 
     		c.setFont('Helvetica', 12, leading=None)
-    		# if invoice_type == 'Receipt':
-    		# 	c.drawCentredString(400, 660, "Receipt Number #:")
-    		# elif invoice_type == 'Proforma Invoice':
-    		# 	c.drawCentredString(400, 660, "Proforma Invoice #:")
-    		# else:
     		c.drawCentredString(400, 660, str(invoice_type) + ':')
     		c.setFont('Helvetica', 12, leading=None)
     		invoice_number_string = str('0000' + invoice_number)
