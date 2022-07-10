@@ -23,7 +23,6 @@
 		{% endfor %}
 	</ul>
 	{% endif %}
-
 </head>
 <body>
 	<div class="row">
@@ -234,5 +233,66 @@
 			</div>
 		</div>
 	</div>
+{{ data|json_script:"hello-data" }}
+	<script type="text/javascript">
+		var data = JSON.parse(document.getElementById('hello-data').textContent);
+
+		document.getElementById('id_line_one').onchange = function(event){
+			var data1 = data.find(({product_number}) => product_number == event.target.value);
+			document.getElementById('id_line_one_unit_price').value = data1 && data1.amount ? data1.amount : 0;
+    };
+
+		document.getElementById('id_line_two').onchange = function(event){
+			var data2 = data.find(({product_number}) => product_number == event.target.value);
+			document.getElementById('id_line_two_unit_price').value = data2 && data2.amount ? data2.amount : 0;
+    };
+
+		document.getElementById('id_line_three').onchange = function(event){
+			var data3 = data.find(({product_number}) => product_number == event.target.value);
+			document.getElementById('id_line_three_unit_price').value = data3 && data3.amount ? data3.amount : 0;
+    };
+
+		document.getElementById('id_line_four').onchange = function(event){
+			var data4 = data.find(({product_number}) => product_number == event.target.value);
+			document.getElementById('id_line_four_unit_price').value = data4 && data4.amount ? data4.amount : 0;
+    };
+
+		document.getElementById('id_line_five').onchange = function(event){
+			var data5 = data.find(({product_number}) => product_number == event.target.value);
+			document.getElementById('id_line_five_unit_price').value = data5 && data5.amount ? data5.amount : 0;
+    };
+
+		document.getElementById('id_line_six').onchange = function(event){
+			var data6 = data.find(({product_number}) => product_number == event.target.value);
+			document.getElementById('id_line_six_unit_price').value = data6 && data6.amount ? data6.amount : 0;
+    };
+
+		document.getElementById('id_line_seven').onchange = function(event){
+			var data7 = data.find(({product_number}) => product_number == event.target.value);
+			document.getElementById('id_line_seven_unit_price').value = data7 && data7.amount ? data7.amount : 0;
+    };
+
+		document.getElementById('id_line_eight').onchange = function(event){
+			var data8 = data.find(({product_number}) => product_number == event.target.value);
+			document.getElementById('id_line_eight_unit_price').value = data8 && data8.amount ? data8.amount : 0;
+    };
+
+		document.getElementById('id_line_nine').onchange = function(event){
+			var data9 = data.find(({product_number}) => product_number == event.target.value);
+			document.getElementById('id_line_nine_unit_price').value = data9 && data9.amount ? data9.amount : 0;
+    };
+
+		document.getElementById('id_line_ten').onchange = function(event){
+			var data10 = data.find(({product_number}) => product_number == event.target.value);
+			document.getElementById('id_line_ten_unit_price').value = data10 && data10.amount ? data10.amount : 0;
+    };
+
+	</script>
 </body>
 </html>
+
+<!-- [{"model": "inventory.inventory",
+"pk": 1, "fields":
+{"product": "nice", "title": "Asus", "amount": 56000}},
+{"model": "inventory.inventory", "pk": 2, "fields":
+{"product": "nice", "title": "Lenovo", "amount": 55000}}] -->

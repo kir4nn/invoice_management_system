@@ -14,6 +14,10 @@ from django.contrib.auth.decorators import login_required
 
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
+import json
+from django.core import serializers
+from django.core.serializers.json import DjangoJSONEncoder
+
 
 def home(request):
     title = 'Welcome: This is the Home Page'
@@ -25,11 +29,17 @@ def home(request):
 @login_required
 def add_invoice(request):
     form = InvoiceForm(request.POST or None)
-    # data = Inventory.objects.all()
-    # dict_obj = model_to_dict(data)
-    # serialized = json.dumps(dict_obj)
+    #data = serializers.serialize("json",Inventory.objects.all(),fields=('product_number', 'amount'))
     total_invoices = Invoice.objects.count()
     queryset = Invoice.objects.order_by('-invoice_date')[:6]
+
+    # data1 = Inventory.objects.values_list('product_number','amount')
+    # data = json.dumps(list(data1), cls=DjangoJSONEncoder)
+
+    # data = serializers.serialize("json", Inventory.objects.in_bulk())
+
+    model_data=Inventory.objects.values_list('product_number','amount')# This returns a queryset object
+    data=[model for model in model_data.values()]
 
     if form.is_valid():
         form.save()
@@ -40,7 +50,7 @@ def add_invoice(request):
         "title": "New Invoice",
         "total_invoices": total_invoices,
 		"queryset": queryset,
-        "serialized":serialized,
+        "data": data,
     }
     return render(request, "entry.html", context)
 

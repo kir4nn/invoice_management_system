@@ -58,6 +58,7 @@ class InvoiceForm(forms.ModelForm):
 			'line_eight_quantity': TextInput(),
 			'line_nine_quantity': TextInput(),
 			'line_ten_quantity': TextInput(),
+			'line_one_unit_price': TextInput(),
         }
 
 	def clean_invoice_number(self):
