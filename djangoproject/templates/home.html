@@ -1,18 +1,32 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% include 'navbar.html' %}
+<html>
 <head>
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link href="{% static 'css/stylesheet.css' %}" rel="stylesheet">
 </head>
-
+<body>
 <center>
 	<u><h1>{{title}}</h1></u><br><br>
-
-		<hr><a href="/invoice/add_invoice"><button class="btn btn-primary btn-lg">Add Invoices</button></a>
-
+	<div class="container">
+	<div class="row">
+  <div class="col-lg">
+			<h2>Invoice</h2>
+			<hr><a href="/invoice/add_invoice"><button class="btn btn-primary btn-lg">Add Invoices</button></a>
 			<hr><a href="/invoice/list_invoice"><button class="btn btn-primary btn-lg">List Invoices</button></a>
-
-		<hr><a href="/inventory"><button class="btn btn-info btn-lg">Inventory</button></a>
-
+			<hr><a href="/invoice"><button class="btn btn-info btn-lg">Invoice Section</button></a>
+	</div>
+  <div class="col-lg">
+		<div class="verticalLine">
+			<h2>Inventory</h2>
+			<hr><a href="/inventory/add_product"><button class="btn btn-primary btn-lg">Add Products</button></a>
+			<hr><a href="/inventory/list_product"><button class="btn btn-primary btn-lg">List Products</button></a>
+			<hr><a href="/inventory"><button class="btn btn-info btn-lg">Inventory Section</button></a>
+		</div>
+	</div>
+	</div>
+</div>
 </center>
+</body>
+</html>

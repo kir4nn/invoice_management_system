@@ -166,7 +166,7 @@ def list_invoice(request):
     		c = canvas.Canvas(pdf_file_name)
 
     		# image of seal
-    		logo = 'logo.jpg'
+    		logo = 'logo.png'
     		c.drawImage(logo, 50, 700, width=500, height=120)
 
     		c.setFont('Helvetica', 12, leading=None)

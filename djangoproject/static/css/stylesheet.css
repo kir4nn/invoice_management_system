@@ -2,6 +2,10 @@ body{
 	background-color: #e7e7e7!important;
 }
 
+.verticalLine {
+  border-left: thick solid #fc766aff;
+}
+
 .main-container{
 	width: 85%;
 	margin: auto;
@@ -28,7 +32,7 @@ body{
 	padding-bottom: 20px;
 }
 .mymenu-bar{
-	background-color: #c48494;
+	background-color: #fc766aff;
 	color: white;
 	display: inline;
 	padding: 10px;
