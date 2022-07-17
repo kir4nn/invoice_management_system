@@ -1,11 +1,12 @@
 from django.db import models
 from inventory.models import Inventory
+from customer.models import Customer
 
 class Invoice(models.Model):
 	comments = models.TextField(max_length=3000, default='', blank=True, null=True)
 	invoice_number = models.IntegerField(blank=True, primary_key=True)
 	invoice_date = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True)
-	name = models.CharField('Customer Name', max_length=120, default='', blank=True, null=True)
+	name = models.ForeignKey(Customer, on_delete=models.SET_NULL, related_name='+', verbose_name="Customer/Retailer Name", blank=True, default='', null=True)
 
 	line_one = models.ForeignKey(Inventory, on_delete=models.SET_NULL, related_name='+', verbose_name="Line 1", blank=True, default='', null=True)
 	line_one_quantity = models.IntegerField('Quantity', default=0, blank=True, null=True)

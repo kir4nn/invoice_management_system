@@ -22,20 +22,20 @@ body{
 
 .myForm form{
 	box-shadow: 10px 10px 10px;
-	box-shadow: 12px 12px 12px #302ea4;
-	border: 1px solid #302ea4;
+	box-shadow: 12px 12px 12px #8FBDD3;
+	border: 1px solid #8FBDD3;
 	padding: 50px;
 	padding-bottom: 20px;
 }
 .mymenu-bar{
-	background-color: #603F83FF;
+	background-color: #8FBDD3;
 	color: white;
 	display: inline;
 	padding: 10px;
 	position: fixed;
 	height: 80%;
 	bottom: 70px;
-	left: -95px;
+	left: -115px;
 	z-index: 3000;
 	border-top-right-radius: 20px;
 	border-bottom-right-radius: 20px;
@@ -51,7 +51,7 @@ body{
 }
 /*Make alternating colors for the table rows*/
 .table tr:nth-child(odd){
-	background: #bf8cf5
+	background: #ace2fc
 }
 
 .table tr:nth-child(even){
@@ -60,9 +60,9 @@ body{
 
 .success{
 	list-style: none;
-	background-color: #302ea4;
+	background-color: #8FBDD3;
 	color: white;
-	box-shadow: 12px 12px 12px #bf8cf5;
+	box-shadow: 12px 12px 12px #ace2fc;
 	text-align: center;
 }
 

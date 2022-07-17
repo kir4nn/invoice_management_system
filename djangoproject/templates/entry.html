@@ -234,8 +234,15 @@
 		</div>
 	</div>
 {{ data|json_script:"hello-data" }}
+{{ customer_data|json_script:"customer-data" }}
 	<script type="text/javascript">
 		var data = JSON.parse(document.getElementById('hello-data').textContent);
+		var customer_data = JSON.parse(document.getElementById('customer-data').textContent);
+
+		document.getElementById('id_name').onchange = function(event){
+			var customer = customer_data.find(({customer_id}) => customer_id == event.target.value);
+			document.getElementById('id_phone_number').value = customer && customer.ph_no ? customer.ph_no : "";
+    };
 
 		document.getElementById('id_line_one').onchange = function(event){
 			var data1 = data.find(({product_number}) => product_number == event.target.value);

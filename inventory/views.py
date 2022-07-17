@@ -3,10 +3,6 @@ from .models import *
 from .forms import InventoryForm, InventorySearchForm, InventoryUpdateForm
 from .models import *
 from django.contrib import messages
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import letter
-from reportlab.lib.pagesizes import landscape
-from reportlab.platypus import Image
 from django.contrib.auth.decorators import login_required
 
 @login_required

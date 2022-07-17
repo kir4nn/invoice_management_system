@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import InvoiceForm, InvoiceSearchForm, InvoiceUpdateForm
 from .models import *
 from inventory.models import Inventory
-
+from customer.models import Customer
 from django.contrib import messages
 
 from reportlab.pdfgen import canvas
@@ -33,6 +33,8 @@ def add_invoice(request):
     queryset = Invoice.objects.order_by('-invoice_date')[:6]
     model_data=Inventory.objects.values_list('product_number','amount')
     data=[model for model in model_data.values()]
+    cust_model_data = Customer.objects.values_list('customer_id','ph_no')
+    customer_data=[model for model in cust_model_data.values()]
 
     if form.is_valid():
         form.save()
@@ -44,6 +46,7 @@ def add_invoice(request):
         "total_invoices": total_invoices,
 		"queryset": queryset,
         "data": data,
+        "customer_data": customer_data,
     }
     return render(request, "entry.html", context)
 
@@ -59,7 +62,7 @@ def list_invoice(request):
     }
 
     if request.method == 'POST':
-           queryset = Invoice.objects.filter(invoice_number__icontains=form['invoice_number'].value(),name__icontains=form['name'].value())
+           queryset = Invoice.objects.filter(invoice_number__icontains=form['invoice_number'].value(),name__name__icontains=form['name'].value())
     context = {
     "form": form,
     "title": title,
@@ -189,14 +192,14 @@ def list_invoice(request):
 
 
     		c.setFont('Helvetica', 12, leading=None)
-    		c.drawCentredString(80, 660, "To:")
+    		c.drawCentredString(88, 660, "To:")
     		c.setFont('Helvetica', 12, leading=None)
     		c.drawCentredString(150, 660, name)
 
     		c.setFont('Helvetica', 12, leading=None)
-    		c.drawCentredString(98, 640, "Phone #:")
+    		c.drawCentredString(98, 640, "Phone:")
     		c.setFont('Helvetica', 12, leading=None)
-    		c.drawCentredString(150, 640, phone_number)
+    		c.drawCentredString(165, 640, phone_number)
 
     		c.setFont('Helvetica-Bold', 14, leading=None)
     		c.drawCentredString(310, 580, str(invoice_type))
