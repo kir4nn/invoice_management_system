@@ -18,6 +18,7 @@ from django.urls import path
 from django.urls import include, re_path
 from invoicecemgmt import views
 from django.views.static import serve
+from django.conf import settings
 
 urlpatterns = [
     path('accounts/', include('registration.backends.default.urls')),
@@ -27,6 +28,5 @@ urlpatterns = [
     path('customer/', include('customer.urls')),
     path('', views.home, name='home'),
 
-    re_path(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}),
-    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATICFILES_DIRS}),
 ]
