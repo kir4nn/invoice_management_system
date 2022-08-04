@@ -26,8 +26,8 @@ body{
 
 .myForm form{
 	box-shadow: 10px 10px 10px;
-	box-shadow: 12px 12px 12px #2e6da4;
-	border: 1px solid #2e6da4;
+	box-shadow: 12px 12px 12px #fc766aff;
+	border: 1px solid #f5948c;
 	padding: 50px;
 	padding-bottom: 20px;
 }
@@ -64,9 +64,9 @@ body{
 
 .success{
 	list-style: none;
-	background-color: #2e6da4;
+	background-color: #fc766aff;
 	color: white;
-	box-shadow: 12px 12px 12px #e61c66;
+	box-shadow: 12px 12px 12px #f5948cppppp;
 	text-align: center;
 }
 

@@ -1,7 +1,7 @@
 from django import forms
 from .models import Invoice
 from inventory.models import Inventory
-from django.forms import TextInput
+from django.forms import TextInput, DateInput
 from crispy_forms.helper import FormHelper
 
 class InvoiceForm(forms.ModelForm):
@@ -43,6 +43,7 @@ class InvoiceForm(forms.ModelForm):
 			'line_eight_unit_price': TextInput(),
 			'line_nine_unit_price': TextInput(),
 			'line_ten_unit_price': TextInput(),
+			'invoice_date': DateInput(attrs={'type': 'date'}),
         }
 
 	def clean_invoice_number(self):
@@ -92,6 +93,10 @@ class InvoiceUpdateForm(forms.ModelForm):
 				'line_ten', 'line_ten_quantity', 'line_ten_unit_price', 'line_ten_total_price',
 				'total', 'paid', 'invoice_type'
 				]
+
+		widgets = {
+			'invoice_date': DateInput(attrs={'type': 'date'}),
+		}
 
 	def clean_invoice_number(self):
 		invoice_number = self.cleaned_data.get('invoice_number')
