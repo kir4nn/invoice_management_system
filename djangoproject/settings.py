@@ -134,5 +134,3 @@ ACCOUNT_ACTIVATION_DAYS = 60  # One-week activation window
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
