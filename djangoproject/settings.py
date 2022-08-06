@@ -133,3 +133,9 @@ ACCOUNT_ACTIVATION_DAYS = 60  # One-week activation window
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'invoicemadeeasy@gmail.com'
+EMAIL_HOST_PASSWORD = 'cojwuwvdemlhuuvy'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

@@ -1,7 +1,8 @@
 from django import forms
 from .models import Invoice
 from inventory.models import Inventory
-from django.forms import TextInput
+from customer.models import Customer
+from django.forms import TextInput, DateInput
 from crispy_forms.helper import FormHelper
 
 class InvoiceForm(forms.ModelForm):
@@ -43,6 +44,7 @@ class InvoiceForm(forms.ModelForm):
 			'line_eight_unit_price': TextInput(),
 			'line_nine_unit_price': TextInput(),
 			'line_ten_unit_price': TextInput(),
+			'invoice_date': DateInput(attrs={'type': 'date'}),
         }
 
 	def clean_invoice_number(self):
@@ -93,6 +95,10 @@ class InvoiceUpdateForm(forms.ModelForm):
 				'total', 'paid', 'invoice_type'
 				]
 
+		widgets = {
+			'invoice_date': DateInput(attrs={'type': 'date'}),
+		}
+
 	def clean_invoice_number(self):
 		invoice_number = self.cleaned_data.get('invoice_number')
 		if not invoice_number:
@@ -117,3 +123,14 @@ class InvoiceUpdateForm(forms.ModelForm):
 		if not line_one_quantity:
 			raise forms.ValidationError('This field is required')
 		return line_one_quantity
+
+class EmailForm(forms.Form):
+	customer = forms.CharField(widget=forms.Select)
+	email = forms.EmailField()
+	subject = forms.CharField(max_length=100)
+	attach = forms.FileField()
+	message = forms.CharField(widget = forms.Textarea)
+
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['customer'].widget.choices = [(i.name, i.name) for i in Customer.objects.all()]

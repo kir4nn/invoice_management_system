@@ -1,23 +1,22 @@
 from django.shortcuts import render, redirect
-from .forms import InvoiceForm, InvoiceSearchForm, InvoiceUpdateForm
+from .forms import InvoiceForm, InvoiceSearchForm, InvoiceUpdateForm, EmailForm
 from .models import *
 from inventory.models import Inventory
 from customer.models import Customer
 from django.contrib import messages
-
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.pagesizes import landscape
 from reportlab.platypus import Image
-
+from django.views import View
 from django.contrib.auth.decorators import login_required
-
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.forms.models import model_to_dict
 import json
 from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
-
+from django.core.mail import EmailMessage
+from django.conf import settings
 
 def home(request):
     title = 'Invoice Management System'
@@ -337,3 +336,34 @@ def delete_invoice(request, pk):
         queryset.delete()
         return redirect('/invoice/list_invoice')
     return render(request, 'delete_invoice.html')
+
+# @login_required
+class EmailAttachementView(View):
+    form_class = EmailForm
+    template_name = 'email.html'
+    # # cust_model_data = Customer.objects.values_list('customer_id','ph_no', 'email')
+    # customer_data=[model for model in cust_model_data.values()]
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+
+        return render(request, self.template_name, {'email_form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST, request.FILES)
+
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            email = form.cleaned_data['email']
+            attach1 = request.FILES['attach']
+
+            try:
+                mail = EmailMessage(subject, message, settings.EMAIL_HOST_USER, [email])
+                mail.attach(attach1.name, attach1.read(), attach1.content_type)
+                mail.send()
+                return render(request, self.template_name, {'email_form': form, 'error_message': 'Sent email to %s'%email})
+            except:
+                return render(request, self.template_name, {'email_form': form, 'error_message': 'Either the attachment is too big or corrupt'})
+
+        return render(request, self.template_name, {'email_form': form, 'error_message': 'Unable to send email. Please try again later'})
