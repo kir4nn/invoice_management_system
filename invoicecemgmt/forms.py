@@ -126,7 +126,7 @@ class InvoiceUpdateForm(forms.ModelForm):
 
 class EmailForm(forms.Form):
 	customer = forms.CharField(widget=forms.Select)
-	email = forms.EmailField()
+	email = forms.CharField(max_length=100)
 	subject = forms.CharField(max_length=100)
 	attach = forms.FileField()
 	message = forms.CharField(widget = forms.Textarea)

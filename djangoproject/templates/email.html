@@ -3,7 +3,6 @@
 {% include 'navbar.html' %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Send Mail</title>
   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -12,7 +11,6 @@
 
 <body>
 
-  <!-- Page Content -->
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -23,7 +21,7 @@
             {{error_message}}
           </div>
           {% endif %}
-
+          <div class="myForm">
           {% if email_form %}
           <form method="POST" action ="" enctype="multipart/form-data">
             {% csrf_token %}
@@ -31,15 +29,23 @@
           <button type="submit" class="btn btn-primary">Send Email</button>
           </form>
           {% endif %}
+          <div class="myForm">
 
       </div>
     </div>
   </div>
+  {{ customer_data|json_script:"customerdata" }}
 
-  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript">
+    document.getElementById('id_subject').value = "Invoice by CompExtras"
+    document.getElementById('id_message').value = "This email contains an attachment of invoice sent by the Wholesaler: CompExtras."
+    var customerdata = JSON.parse(document.getElementById('customerdata').textContent);
+    document.getElementById('id_customer').onchange = function(event){
+      var cust = customerdata.find(({name}) => name == event.target.value);
+      document.getElementById('id_email').value = cust && cust.email ? cust.email : "";
+    };
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
 </body>
-
 </html>
