@@ -27,7 +27,11 @@ body{
 .myForm form{
 	box-shadow: 10px 10px 10px;
 	box-shadow: 12px 12px 12px #fc766aff;
+<<<<<<< HEAD
 	border: 1px solid #fc766aff;
+=======
+	border: 1px solid #f5948c;
+>>>>>>> b0d381e20464cd7e0646b89baf670a9ebf039252
 	padding: 50px;
 	padding-bottom: 20px;
 }

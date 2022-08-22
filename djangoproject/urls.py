@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.urls import include
+from django.urls import include, re_path
 from invoicecemgmt import views
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
@@ -28,4 +28,6 @@ urlpatterns = [
     path('inventory/', include('inventory.urls')),
     path('customer/', include('customer.urls')),
     path('', views.home, name='home'),
+
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATICFILES_DIRS}),
 ]

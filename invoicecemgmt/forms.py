@@ -1,7 +1,10 @@
 from django import forms
 from .models import Invoice
 from inventory.models import Inventory
+<<<<<<< HEAD
 from customer.models import Customer
+=======
+>>>>>>> b0d381e20464cd7e0646b89baf670a9ebf039252
 from django.forms import TextInput, DateInput
 from crispy_forms.helper import FormHelper
 
