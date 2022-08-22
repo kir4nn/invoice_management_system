@@ -20,7 +20,7 @@ from django.conf import settings
 import os
 
 def home(request):
-    title = 'Invoice Management System'
+    title = 'Digital Invoice Management System'
     context = {
     "title": title,
     }

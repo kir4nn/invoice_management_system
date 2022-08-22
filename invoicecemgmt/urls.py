@@ -18,6 +18,7 @@ from django.urls import path
 from . import views
 from django.urls import include
 from .views import EmailAttachementView
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -25,5 +26,5 @@ urlpatterns = [
     path('list_invoice/', views.list_invoice, name='list_invoice'),
     path('update_invoice/<str:pk>/', views.update_invoice, name="update_invoice"),
     path('delete_invoice/<str:pk>/', views.delete_invoice, name="delete_invoice"),
-    path('email/', EmailAttachementView.as_view(), name='emailattachment'),
+    path('email/', login_required(EmailAttachementView.as_view()), name='emailattachment'),
 ]

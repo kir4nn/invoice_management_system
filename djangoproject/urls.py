@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from invoicecemgmt import views
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.ico'))),
     path('accounts/', include('registration.backends.default.urls')),
     path('admin/', admin.site.urls),
     path('invoice/', include('invoicecemgmt.urls')),
